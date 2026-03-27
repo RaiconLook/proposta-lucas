@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposta — Mentoria Personalizada de IA | Lucas</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface-2: #1a1a1a;
+      --border: #222222;
+      --text: #e5e5e5;
+      --text-muted: #888888;
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.15);
+      --green: #22c55e;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 32px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .meta strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      margin-top: 32px;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* Cards */
+    .encontro-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .encontro-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+
+    .encontro-card:hover {
+      border-color: var(--accent);
+    }
+
+    .encontro-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .encontro-card h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .encontro-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .encontro-card ul li {
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .encontro-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* Entregáveis */
+    .entregaveis-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 24px;
+    }
+
+    .entregaveis-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    .entregaveis-list li:last-child {
+      border-bottom: none;
+    }
+
+    .check {
+      color: var(--green);
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Investimento */
+    .invest-box {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      margin-top: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .invest-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), #a78bfa);
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin: 16px 0 8px;
+    }
+
+    .price-detail {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .invest-items {
+      text-align: left;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .invest-items li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+      color: var(--text-muted);
+      font-size: 14px;
+      list-style: none;
+    }
+
+    .invest-items li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* Mentor */
+    .mentor-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      margin-top: 32px;
+    }
+
+    .mentor-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .mentor-role {
+      font-size: 14px;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 16px;
+      background: var(--surface-2);
+      border-radius: 8px;
+    }
+
+    .stat-num {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 16px 48px;
+      background: var(--accent);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 60px var(--accent-glow);
+    }
+
+    .cta-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 16px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+      .meta { flex-direction: column; gap: 12px; }
+      .price { font-size: 36px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .encontro-card { padding: 20px; }
+      .invest-box { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <div class="badge">Proposta Exclusiva</div>
+      <h1>Mentoria Personalizada<br>de <span>Inteligência Artificial</span></h1>
+      <p>6 encontros com Marcelo Anders. Saia com domínio de ferramentas de IA, skills práticas e um agente personalizado construído junto.</p>
+      <div class="meta">
+        <span>Preparada para <strong>Lucas</strong></span>
+        <span>Mentor <strong>Marcelo Anders</strong></span>
+        <span>Março 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Problema -->
+  <section>
+    <div class="container">
+      <div class="section-label">O Contexto</div>
+      <h2>O ecossistema de IA é enorme — e sem um guia, o risco é perder tempo.</h2>
+      <p>Existem dezenas de ferramentas, APIs e possibilidades. Testar tudo sozinho leva meses e não garante que você vai encontrar o que realmente funciona pro seu contexto. A mentoria corta esse caminho: você aprende direto o que importa, com quem já implementou mais de 200 agentes.</p>
+    </div>
+  </section>
+
+  <!-- Escopo -->
+  <section>
+    <div class="container">
+      <div class="section-label">Escopo da Mentoria</div>
+      <h2>6 encontros. Do diagnóstico ao agente rodando.</h2>
+
+      <div class="encontro-grid">
+        <div class="encontro-card">
+          <div class="encontro-num">Encontro 1</div>
+          <h3>Análise 360° de IA</h3>
+          <ul>
+            <li>Panorama completo das ferramentas de IA disponíveis no mercado</li>
+            <li>Deep dive em Claude Code: skills, automações, integrações</li>
+            <li>Demonstração prática de cada ferramenta no seu contexto</li>
+            <li>Definição de quais ferramentas fazem sentido pro seu negócio</li>
+          </ul>
+        </div>
+
+        <div class="encontro-card">
+          <div class="encontro-num">Encontro 2</div>
+          <h3>Mapeamento Completo</h3>
+          <ul>
+            <li>Levantamento dos seus objetivos com IA</li>
+            <li>Identificação do conhecimento atual</li>
+            <li>Definição dos escopos de trabalho para os próximos encontros</li>
+            <li>Roadmap personalizado de aprendizado</li>
+          </ul>
+        </div>
+
+        <div class="encontro-card">
+          <div class="encontro-num">Encontros 3 a 5</div>
+          <h3>Aprendizados Práticos do Escopo</h3>
+          <ul>
+            <li>Sessões guiadas focadas nos escopos definidos no Encontro 2</li>
+            <li>Ferramentas na prática: configuração, uso, integração</li>
+            <li>Conexões com APIs relevantes pro seu negócio</li>
+            <li>Soluções práticas aplicadas ao dia a dia da operação</li>
+            <li>Cada encontro com entregável claro e aplicável imediatamente</li>
+          </ul>
+        </div>
+
+        <div class="encontro-card">
+          <div class="encontro-num">Encontro 6</div>
+          <h3>Construção do Agente Personalizado</h3>
+          <ul>
+            <li>Construção conjunta de um agente de IA</li>
+            <li>Definição da estratégia do agente junto com você</li>
+            <li>Agente personalizado para o contexto específico do seu negócio</li>
+            <li>Você participa de cada passo e sai sabendo como o agente funciona</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Entregáveis -->
+  <section>
+    <div class="container">
+      <div class="section-label">O que você recebe</div>
+      <h2>Entregáveis</h2>
+
+      <ul class="entregaveis-list">
+        <li><span class="check">✓</span> 6 encontros de mentoria 1:1 com Marcelo Anders</li>
+        <li><span class="check">✓</span> Análise 360° de ferramentas de IA e Claude Code</li>
+        <li><span class="check">✓</span> Mapeamento completo de objetivos e escopos</li>
+        <li><span class="check">✓</span> 4 sessões práticas com soluções aplicáveis</li>
+        <li><span class="check">✓</span> 1 agente de IA personalizado construído junto</li>
+        <li><span class="check">✓</span> Documentação completa — propriedade sua</li>
+        <li><span class="check">✓</span> Roadmap personalizado de evolução pós-mentoria</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Investimento -->
+  <section>
+    <div class="container">
+      <div class="section-label">Investimento</div>
+      <h2>Um investimento em conhecimento que se paga.</h2>
+
+      <div class="invest-box">
+        <div class="section-label">Mentoria Personalizada</div>
+        <div class="price">R$22.000</div>
+        <div class="price-detail">ou 12x de R$1.833,33</div>
+
+        <ul class="invest-items">
+          <li>6 encontros de mentoria personalizada com Cello</li>
+          <li>Análise 360° + mapeamento + 4 sessões práticas</li>
+          <li>Construção de 1 agente personalizado</li>
+          <li>Documentação completa como sua propriedade</li>
+          <li>Você sai com conhecimento, ferramentas e um agente rodando</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mentor -->
+  <section>
+    <div class="container">
+      <div class="section-label">Seu Mentor</div>
+      <h2>Marcelo Anders</h2>
+
+      <div class="mentor-card">
+        <div class="mentor-name">Cello</div>
+        <div class="mentor-role">CEO — MGTInc</div>
+        <p>Criou vários negócios de tecnologia. Transforma experts com audiência em donos de SaaS, apps e escritórios virtuais de IA. Experiência real com Claude Code, N8N, multi-agentes e automações em escala.</p>
+
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-num">200+</div>
+            <div class="stat-label">Agentes implementados</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">20K+</div>
+            <div class="stat-label">Views por vídeo</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">9K+</div>
+            <div class="stat-label">Pessoas alcançadas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Pronto para dominar IA?</h2>
+      <p style="margin-bottom: 32px;">6 encontros. Conhecimento prático. Um agente seu rodando.</p>
+      <a href="https://wa.me/5547999999999?text=Oi%20Raicon%2C%20quero%20fechar%20a%20mentoria!" class="cta-btn">Quero começar</a>
+      <div class="cta-sub">Fale com Raicon para agendar o primeiro encontro</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      MGTInc — Transformando experts em donos de negócios com IA
+    </div>
+  </footer>
+
+</body>
+</html>
